@@ -1,0 +1,12 @@
+{% extends "pokoj/base.html" %}
+{% block tresc %}
+<h1>Dodaj/Edytuj ogłoszenie</h1>
+<form action="." method="post" id="pform">
+  {% csrf_token %}
+  {{ form.as_p }}
+
+  <br /><input type="submit" class="btn btn-success" value="Zapisz">
+  <a href="{% url 'pokoj:lista' %}" class="btn btn-default">Anuluj</a>
+</form>
+
+{% endblock %}

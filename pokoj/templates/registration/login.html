@@ -1,0 +1,18 @@
+{% extends "pokoj/base.html" %}
+
+{% block tytul_h1 %}
+  Logowanie
+{% endblock %}
+
+{% block tresc %}
+  <form method="post" action="." class="form">
+      {% csrf_token %}
+      {{ form.as_p }}
+    <input type="submit" value="Zaloguj się" class="btn btn-success">
+  </form>
+<hr>
+<p>
+  Nie masz konta?<br>
+  <a href="{% url 'registration_register' %}" class="btn btn-primary">Utwórz konto!</a>
+</p>
+{% endblock %}

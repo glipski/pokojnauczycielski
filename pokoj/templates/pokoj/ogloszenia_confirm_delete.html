@@ -1,0 +1,11 @@
+{% extends "pokoj/base.html" %}
+{% block tresc %}
+<h1>Usuwanie ogłoszenia</h1>
+<form action="." method="post">
+  {% csrf_token %}
+  <p>Czy na pewno chcesz usunąć ogłoszenie?</p>
+    </ol>
+  <button type="submit" class="btn btn-danger">Tak</button>
+  <a href="{% url 'pokoj:lista' %}" class="btn btn-default">Nie</a>
+</form>
+{% endblock %}

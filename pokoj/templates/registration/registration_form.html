@@ -1,0 +1,14 @@
+{% extends "pokoj/base.html" %}
+
+{% block tytul_h1 %}
+  Tworzenie nowego konta
+{% endblock %}
+
+{% block tresc %}
+<form action="." method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Utwórz konto" class="btn btn-success">
+    <a href="{% url 'pokoj:index' %}" class="btn btn-default">Wróć do strony głównej</a>
+</form>
+{% endblock %}

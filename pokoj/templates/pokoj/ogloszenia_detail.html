@@ -1,0 +1,12 @@
+{% extends "pokoj/base.html" %}
+{% block tresc %}
+<h1>Szczegóły ogłoszenia</h1>
+<table class="table table-hover table-bordered">
+  <tr><td>Tytuł:</td><td>{{ object.tytul }}</td></tr>
+  <tr><td>Opis:</td><td>{{ object.opis }}</td></tr>
+  <tr><td>Dodano:</td><td>{{ object.data }}</td></tr>
+  <tr><td>Autor:</td><td>{{ object.autor }}</td></tr>
+</table>
+
+<a href="{% url 'pokoj:lista' %}" class="btn btn-default">Wróć do listy</a>
+{% endblock %}

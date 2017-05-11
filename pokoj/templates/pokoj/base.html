@@ -1,0 +1,101 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>{% block tytul_head %}Pokój nauczycielski{% endblock %}</title>
+
+  <!-- Latest compiled and minified CSS 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  -->  
+  <link href="{% static 'pokoj/css/bootstrap.min.css' %}" rel="stylesheet" >
+  <link href="{% static 'pokoj/css/pokoj.css' %}" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="http://csshake.surge.sh/csshake.min.css">
+</head>
+<body>
+
+<!-- Nawigacja -->
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Przełącz nawigację</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="{% url 'pokoj:index' %}">
+        <img src="{% static 'pokoj/images/logo.jpg' %}" class="img-thumbnail">
+      </a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        {% if not user.is_authenticated %}
+        <li><a href="{% url 'auth_login' %}">Zaloguj</a></li>
+        <li><a href="{% url 'registration_register' %}">Utwórz konto</a></li>
+        {% else %}
+        <li><a>Zalogowany jako {{ user.username }}</a></li>
+        <li><a href="{% url 'pokoj:lista' %}">Lista ogłoszeń</a></li>
+        <li><a href="{% url 'auth_logout' %}">Wyloguj [ {{ user.username }} ]</a></li>
+        {% endif %}
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</nav>
+
+<!-- Treść główna -->
+<div class="container">
+
+  <div class="row">
+
+    <div class="col-sm-9">
+
+      <noscript><p>Uaktywnij bsługę JavaScript.</p></noscript>
+
+      <!-- blok tytułu strony -->
+      <h1>{% block tytul_h1 %}{% endblock %}</h1>
+
+      <!-- blok treści -->
+      <div class="tresc">
+        {% block tresc %}{% endblock %}
+      </div>
+
+    </div>
+
+    <div class="col-sm-3">
+      <div class="well">
+        <h4>Przydatne linki</h4>
+        <ul>
+          {% block linki_ul %}
+            <li><a href="http://soswlublin.pl">SOSWLublin - strona szkoły</a></li>
+            <li><a href="http://soswinformatyka.pl/">SOSWInformatyka</a></li>
+          {% endblock %}
+        </ul>
+      </div> <!--/well-->
+    </div>
+
+  </div> <!--/row -->
+</div> <!--/container -->
+<div class="container footer">
+  <footer style="margin-top: 35%;">
+    <div class="row">
+      <div class="col-sm-12 text-center">
+        <div class="well">
+          Pokój nauczycielski<br>&copy; by Kamil Karpiński 2017 <br /><br />
+          Projekt zrealizowany przez ucznia Kamila Karpińskiego w ramach ogólnopolskiej akcji "Koduj z klasą" we współpracy z Centrum Edukacji Obywatelskiej.<br />
+          <a href="https://kodujzklasa.ceo.org.pl/" target="_blank"><img class="shake-slow" src="https://kodujzklasa.ceo.org.pl/sites/kodujzklasa.ceo.org.pl/themes/eduglob/logo.png" /></a>
+          <a href="https://soswinformatyka.pl" target="_blank"><img class="shake-slow" src="http://soswinformatyka.pl/assets/img/logo.png" /></a><br />
+          <a href="https://soswlublin.pl/wyscigowa" target="_blank"><img class="shake-slow" src="http://soswlublin.pl/wyscigowa/templates/september-2012/images/header.png" /></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</body>
+</html>

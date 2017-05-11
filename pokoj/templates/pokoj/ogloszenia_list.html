@@ -1,0 +1,36 @@
+{% extends "pokoj/base.html" %}
+
+{% block tytul_h1 %}
+  Lista ogłoszeń
+{% endblock %}
+
+{% block tresc %}
+<a href="{% url 'pokoj:dodaj' %}" class="btn btn-success pull-right">Dodaj nowe ogłoszenie</a><br /><br />
+<table class="table table-hover table-bordered">
+<thead>
+	<tr><th>Lp.</th><th>Tytuł ogłoszenia</th><th>Opis</th><th>Data dodania</th><th colspan="3">Operacje</th></tr>
+</thead>
+<tbody>
+	{% for p in object_list %}
+	<tr>
+		<td>{{ forloop.counter }}</td>
+		<td>{{ p.tytul }}</td>
+		<td>{{ p.opis }}</td>
+		<td>Dodane przez {{ p.autor.username }} dnia {{ p.data }}</td>
+		<td>
+        <a href="{% url 'pokoj:info' p.id %}" class="btn btn-default">Szczegóły</a>
+        {% if p.autor.username == user.username %}
+		</td>
+		<td>
+				<a href="{% url 'pokoj:edytuj' p.id %}" class="btn btn-primary">Edytuj</a>
+		</td>
+		<td>
+				<a href="{% url 'pokoj:usun' p.id %}" class="btn btn-danger">Usuń</a>
+		</td>
+        {% endif %}
+		</td>
+	</tr>
+	{% endfor %}
+</tbody>
+</table>
+{% endblock %}
